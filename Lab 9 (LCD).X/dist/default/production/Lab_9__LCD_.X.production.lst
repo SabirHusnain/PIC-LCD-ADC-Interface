@@ -1,0 +1,1651 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                               Fri Jul 23 21:42:10 2021
+
+Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og9 
+     1                           	processor	18F452
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     8                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    10                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text5,global,reloc=2,class=CODE,delta=1,group=1
+    16                           	psect	text6,global,reloc=2,class=CODE,delta=1,group=1
+    17                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    19                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    20                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    21                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    22                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    23  0000                     
+    24                           ; Version 2.32
+    25                           ; Generated 02/02/2021 GMT
+    26                           ; 
+    27                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    28                           ; All rights reserved.
+    29                           ; 
+    30                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    31                           ; 
+    32                           ; Redistribution and use in source and binary forms, with or without modification, are
+    33                           ; permitted provided that the following conditions are met:
+    34                           ; 
+    35                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    36                           ;        conditions and the following disclaimer.
+    37                           ; 
+    38                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    39                           ;        of conditions and the following disclaimer in the documentation and/or other
+    40                           ;        materials provided with the distribution. Publication is not required when
+    41                           ;        this file is used in an embedded application.
+    42                           ; 
+    43                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    44                           ;        software without specific prior written permission.
+    45                           ; 
+    46                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    47                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    48                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    49                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    50                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    51                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    52                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    53                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    54                           ; 
+    55                           ; 
+    56                           ; Code-generator required, PIC18F452 Definitions
+    57                           ; 
+    58                           ; SFR Addresses
+    59  0000                     
+    60                           	psect	idataCOMRAM
+    61  003C04                     __pidataCOMRAM:
+    62                           	callstack 0
+    63                           
+    64                           ;initializer for _ADCHigher
+    65  003C04  0003               	dw	3
+    66                           
+    67                           ;initializer for _ADCLower
+    68  003C06  0033               	dw	51
+    69  0000                     _PORTD	set	3971
+    70  0000                     _ADRESH	set	4036
+    71  0000                     _ADRESL	set	4035
+    72  0000                     _ADCON0bits	set	4034
+    73  0000                     _PORTBbits	set	3969
+    74  0000                     _ADCON1	set	4033
+    75  0000                     _ADCON0	set	4034
+    76  0000                     _TRISAbits	set	3986
+    77  0000                     _TRISB	set	3987
+    78  0000                     _TRISD	set	3989
+    79                           
+    80                           ; #config settings
+    81                           
+    82                           	psect	cinit
+    83  003C7A                     __pcinit:
+    84                           	callstack 0
+    85  003C7A                     start_initialization:
+    86                           	callstack 0
+    87  003C7A                     __initialization:
+    88                           	callstack 0
+    89                           
+    90                           ; Initialize objects allocated to COMRAM (4 bytes)
+    91                           ; load TBLPTR registers with __pidataCOMRAM
+    92  003C7A  0E04               	movlw	low __pidataCOMRAM
+    93  003C7C  6EF6               	movwf	tblptrl,c
+    94  003C7E  0E3C               	movlw	high __pidataCOMRAM
+    95  003C80  6EF7               	movwf	tblptrh,c
+    96  003C82  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+    97  003C84  6EF8               	movwf	tblptru,c
+    98  003C86  EE00  F015         	lfsr	0,__pdataCOMRAM
+    99  003C8A  EE10 F004          	lfsr	1,4
+   100  003C8E                     copy_data0:
+   101  003C8E  0009               	tblrd		*+
+   102  003C90  CFF5 FFEE          	movff	tablat,postinc0
+   103  003C94  50E5               	movf	postdec1,w,c
+   104  003C96  50E1               	movf	fsr1l,w,c
+   105  003C98  E1FA               	bnz	copy_data0
+   106                           
+   107                           ; Clear objects allocated to COMRAM (10 bytes)
+   108  003C9A  EE00  F001         	lfsr	0,__pbssCOMRAM
+   109  003C9E  0E0A               	movlw	10
+   110  003CA0                     clear_0:
+   111  003CA0  6AEE               	clrf	postinc0,c
+   112  003CA2  06E8               	decf	wreg,f,c
+   113  003CA4  E1FD               	bnz	clear_0
+   114  003CA6                     end_of_initialization:
+   115                           	callstack 0
+   116  003CA6                     __end_of__initialization:
+   117                           	callstack 0
+   118  003CA6  0100               	movlb	0
+   119  003CA8  EF8B  F01F         	goto	_main	;jump to C main() function
+   120                           
+   121                           	psect	bssCOMRAM
+   122  000001                     __pbssCOMRAM:
+   123                           	callstack 0
+   124  000001                     _num4:
+   125                           	callstack 0
+   126  000001                     	ds	2
+   127  000003                     _num3:
+   128                           	callstack 0
+   129  000003                     	ds	2
+   130  000005                     _num2:
+   131                           	callstack 0
+   132  000005                     	ds	2
+   133  000007                     _num1:
+   134                           	callstack 0
+   135  000007                     	ds	2
+   136  000009                     _finalNum:
+   137                           	callstack 0
+   138  000009                     	ds	2
+   139                           
+   140                           	psect	dataCOMRAM
+   141  000015                     __pdataCOMRAM:
+   142                           	callstack 0
+   143  000015                     _ADCHigher:
+   144                           	callstack 0
+   145  000015                     	ds	2
+   146  000017                     _ADCLower:
+   147                           	callstack 0
+   148  000017                     	ds	2
+   149                           
+   150                           	psect	cstackCOMRAM
+   151  00000B                     __pcstackCOMRAM:
+   152                           	callstack 0
+   153  00000B                     ?___awdiv:
+   154                           	callstack 0
+   155  00000B                     ?___awmod:
+   156                           	callstack 0
+   157  00000B                     MSDelay@itime:
+   158                           	callstack 0
+   159  00000B                     Delay@i:
+   160                           	callstack 0
+   161  00000B                     ___awdiv@dividend:
+   162                           	callstack 0
+   163  00000B                     ___awmod@dividend:
+   164                           	callstack 0
+   165                           
+   166                           ; 2 bytes @ 0x0
+   167  00000B                     	ds	2
+   168  00000D                     MSDelay@i:
+   169                           	callstack 0
+   170  00000D                     Delay@j:
+   171                           	callstack 0
+   172  00000D                     ___awdiv@divisor:
+   173                           	callstack 0
+   174  00000D                     ___awmod@divisor:
+   175                           	callstack 0
+   176                           
+   177                           ; 2 bytes @ 0x2
+   178  00000D                     	ds	2
+   179  00000F                     ___awdiv@counter:
+   180                           	callstack 0
+   181  00000F                     ___awmod@counter:
+   182                           	callstack 0
+   183  00000F                     MSDelay@j:
+   184                           	callstack 0
+   185  00000F                     Delay@k:
+   186                           	callstack 0
+   187                           
+   188                           ; 2 bytes @ 0x4
+   189  00000F                     	ds	1
+   190  000010                     ___awdiv@sign:
+   191                           	callstack 0
+   192  000010                     ___awmod@sign:
+   193                           	callstack 0
+   194                           
+   195                           ; 1 bytes @ 0x5
+   196  000010                     	ds	1
+   197  000011                     lcdcmd@value:
+   198                           	callstack 0
+   199  000011                     lcddata@value:
+   200                           	callstack 0
+   201  000011                     ___awdiv@quotient:
+   202                           	callstack 0
+   203                           
+   204                           ; 2 bytes @ 0x6
+   205  000011                     	ds	2
+   206  000013                     ??_Seperate_Digit:
+   207                           
+   208                           ; 1 bytes @ 0x8
+   209  000013                     	ds	2
+   210  000015                     
+   211                           ; 1 bytes @ 0xA
+   212 ;;
+   213 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   214 ;;
+   215 ;; *************** function _main *****************
+   216 ;; Defined at:
+   217 ;;		line 83 in file "main.c"
+   218 ;; Parameters:    Size  Location     Type
+   219 ;;		None
+   220 ;; Auto vars:     Size  Location     Type
+   221 ;;		None
+   222 ;; Return value:  Size  Location     Type
+   223 ;;                  2   50[None  ] int 
+   224 ;; Registers used:
+   225 ;;		wreg, status,2, status,0, cstack
+   226 ;; Tracked objects:
+   227 ;;		On entry : 0/0
+   228 ;;		On exit  : 0/0
+   229 ;;		Unchanged: 0/0
+   230 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   231 ;;      Params:         0       0       0       0       0       0       0
+   232 ;;      Locals:         0       0       0       0       0       0       0
+   233 ;;      Temps:          0       0       0       0       0       0       0
+   234 ;;      Totals:         0       0       0       0       0       0       0
+   235 ;;Total ram usage:        0 bytes
+   236 ;; Hardware stack levels required when called: 2
+   237 ;; This function calls:
+   238 ;;		_ADC_CONV
+   239 ;;		_Delay
+   240 ;;		_MSDelay
+   241 ;;		_Seperate_Digit
+   242 ;;		_lcdcmd
+   243 ;;		_lcddata
+   244 ;; This function is called by:
+   245 ;;		Startup code after reset
+   246 ;; This function uses a non-reentrant model
+   247 ;;
+   248                           
+   249                           	psect	text0
+   250  003F16                     __ptext0:
+   251                           	callstack 0
+   252  003F16                     _main:
+   253                           	callstack 0
+   254  003F16  FFFF               	dw	65535	; assembler added errata NOP
+   255                           
+   256                           ;main.c: 84: TRISD = 0;
+   257                           
+   258                           ;incstack = 0
+   259  003F18  0E00               	movlw	0
+   260  003F1A  6E95               	movwf	149,c	;volatile
+   261                           
+   262                           ;main.c: 85: TRISB = 0;
+   263  003F1C  0E00               	movlw	0
+   264  003F1E  6E93               	movwf	147,c	;volatile
+   265                           
+   266                           ;main.c: 87: TRISAbits.TRISA0 = 1;
+   267  003F20  8092               	bsf	146,0,c	;volatile
+   268                           
+   269                           ;main.c: 88: ADCON0 = 0x81;
+   270  003F22  0E81               	movlw	129
+   271  003F24  6EC2               	movwf	194,c	;volatile
+   272                           
+   273                           ;main.c: 89: ADCON1 = 0xCE;
+   274  003F26  0ECE               	movlw	206
+   275  003F28  6EC1               	movwf	193,c	;volatile
+   276                           
+   277                           ;main.c: 92: PORTBbits.RB2 = 0;
+   278  003F2A  9481               	bcf	129,2,c	;volatile
+   279                           
+   280                           ;main.c: 93: MSDelay(10);
+   281  003F2C  0E00               	movlw	0
+   282  003F2E  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   283  003F30  0E0A               	movlw	10
+   284  003F32  6E0B               	movwf	MSDelay@itime^0,c
+   285  003F34  EC56  F01E         	call	_MSDelay	;wreg free
+   286                           
+   287                           ;main.c: 94: lcdcmd(0x38);
+   288  003F38  0E38               	movlw	56
+   289  003F3A  EC04  F01E         	call	_lcdcmd
+   290                           
+   291                           ;main.c: 95: MSDelay(10);
+   292  003F3E  0E00               	movlw	0
+   293  003F40  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   294  003F42  0E0A               	movlw	10
+   295  003F44  6E0B               	movwf	MSDelay@itime^0,c
+   296  003F46  EC56  F01E         	call	_MSDelay	;wreg free
+   297                           
+   298                           ;main.c: 97: lcdcmd(0x0E);
+   299  003F4A  0E0E               	movlw	14
+   300  003F4C  EC04  F01E         	call	_lcdcmd
+   301                           
+   302                           ;main.c: 98: MSDelay(15);
+   303  003F50  0E00               	movlw	0
+   304  003F52  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   305  003F54  0E0F               	movlw	15
+   306  003F56  6E0B               	movwf	MSDelay@itime^0,c
+   307  003F58  EC56  F01E         	call	_MSDelay	;wreg free
+   308                           
+   309                           ;main.c: 99: lcdcmd(0x01);
+   310  003F5C  0E01               	movlw	1
+   311  003F5E  EC04  F01E         	call	_lcdcmd
+   312                           
+   313                           ;main.c: 100: MSDelay(15);
+   314  003F62  0E00               	movlw	0
+   315  003F64  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   316  003F66  0E0F               	movlw	15
+   317  003F68  6E0B               	movwf	MSDelay@itime^0,c
+   318  003F6A  EC56  F01E         	call	_MSDelay	;wreg free
+   319                           
+   320                           ;main.c: 101: lcdcmd(0x06);
+   321  003F6E  0E06               	movlw	6
+   322  003F70  EC04  F01E         	call	_lcdcmd
+   323                           
+   324                           ;main.c: 102: MSDelay(15);
+   325  003F74  0E00               	movlw	0
+   326  003F76  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   327  003F78  0E0F               	movlw	15
+   328  003F7A  6E0B               	movwf	MSDelay@itime^0,c
+   329  003F7C  EC56  F01E         	call	_MSDelay	;wreg free
+   330                           
+   331                           ;main.c: 103: lcdcmd(0x84);
+   332  003F80  0E84               	movlw	132
+   333  003F82  EC04  F01E         	call	_lcdcmd
+   334                           
+   335                           ;main.c: 104: MSDelay(15);
+   336  003F86  0E00               	movlw	0
+   337  003F88  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   338  003F8A  0E0F               	movlw	15
+   339  003F8C  6E0B               	movwf	MSDelay@itime^0,c
+   340  003F8E  EC56  F01E         	call	_MSDelay	;wreg free
+   341  003F92                     l1229:
+   342  003F92  FFFF               	dw	65535	; assembler added errata NOP
+   343                           
+   344                           ;main.c: 107: ADC_CONV();
+   345  003F94  EC24  F01E         	call	_ADC_CONV	;wreg free
+   346                           
+   347                           ;main.c: 108: Seperate_Digit();
+   348  003F98  EC27  F01F         	call	_Seperate_Digit	;wreg free
+   349                           
+   350                           ;main.c: 110: lcddata((char) (num4 + 48));
+   351  003F9C  5001               	movf	_num4^0,w,c
+   352  003F9E  0F30               	addlw	48
+   353  003FA0  EC14  F01E         	call	_lcddata
+   354                           
+   355                           ;main.c: 111: Delay(3);
+   356  003FA4  0E00               	movlw	0
+   357  003FA6  6E0C               	movwf	(Delay@i+1)^0,c
+   358  003FA8  0E03               	movlw	3
+   359  003FAA  6E0B               	movwf	Delay@i^0,c
+   360  003FAC  EC76  F01E         	call	_Delay	;wreg free
+   361                           
+   362                           ;main.c: 112: lcddata((char) (num3 + 48));
+   363  003FB0  5003               	movf	_num3^0,w,c
+   364  003FB2  0F30               	addlw	48
+   365  003FB4  EC14  F01E         	call	_lcddata
+   366                           
+   367                           ;main.c: 113: Delay(3);
+   368  003FB8  0E00               	movlw	0
+   369  003FBA  6E0C               	movwf	(Delay@i+1)^0,c
+   370  003FBC  0E03               	movlw	3
+   371  003FBE  6E0B               	movwf	Delay@i^0,c
+   372  003FC0  EC76  F01E         	call	_Delay	;wreg free
+   373                           
+   374                           ;main.c: 114: lcddata((char) (num2 + 48));
+   375  003FC4  5005               	movf	_num2^0,w,c
+   376  003FC6  0F30               	addlw	48
+   377  003FC8  EC14  F01E         	call	_lcddata
+   378                           
+   379                           ;main.c: 115: Delay(3);
+   380  003FCC  0E00               	movlw	0
+   381  003FCE  6E0C               	movwf	(Delay@i+1)^0,c
+   382  003FD0  0E03               	movlw	3
+   383  003FD2  6E0B               	movwf	Delay@i^0,c
+   384  003FD4  EC76  F01E         	call	_Delay	;wreg free
+   385                           
+   386                           ;main.c: 116: lcddata((char) (num1 + 48));
+   387  003FD8  5007               	movf	_num1^0,w,c
+   388  003FDA  0F30               	addlw	48
+   389  003FDC  EC14  F01E         	call	_lcddata
+   390                           
+   391                           ;main.c: 117: MSDelay(350);
+   392  003FE0  0E01               	movlw	1
+   393  003FE2  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   394  003FE4  0E5E               	movlw	94
+   395  003FE6  6E0B               	movwf	MSDelay@itime^0,c
+   396  003FE8  EC56  F01E         	call	_MSDelay	;wreg free
+   397                           
+   398                           ;main.c: 118: lcdcmd(0x01);
+   399  003FEC  0E01               	movlw	1
+   400  003FEE  EC04  F01E         	call	_lcdcmd
+   401                           
+   402                           ;main.c: 119: Delay(2);
+   403  003FF2  0E00               	movlw	0
+   404  003FF4  6E0C               	movwf	(Delay@i+1)^0,c
+   405  003FF6  0E02               	movlw	2
+   406  003FF8  6E0B               	movwf	Delay@i^0,c
+   407  003FFA  EC76  F01E         	call	_Delay	;wreg free
+   408  003FFE  D7C9               	goto	l1229
+   409  004000                     __end_of_main:
+   410                           	callstack 0
+   411                           
+   412 ;; *************** function _lcddata *****************
+   413 ;; Defined at:
+   414 ;;		line 153 in file "main.c"
+   415 ;; Parameters:    Size  Location     Type
+   416 ;;  value           1    wreg     unsigned char 
+   417 ;; Auto vars:     Size  Location     Type
+   418 ;;  value           1    6[COMRAM] unsigned char 
+   419 ;; Return value:  Size  Location     Type
+   420 ;;                  1    wreg      void 
+   421 ;; Registers used:
+   422 ;;		wreg, status,2, status,0, cstack
+   423 ;; Tracked objects:
+   424 ;;		On entry : 0/0
+   425 ;;		On exit  : 0/0
+   426 ;;		Unchanged: 0/0
+   427 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   428 ;;      Params:         0       0       0       0       0       0       0
+   429 ;;      Locals:         1       0       0       0       0       0       0
+   430 ;;      Temps:          0       0       0       0       0       0       0
+   431 ;;      Totals:         1       0       0       0       0       0       0
+   432 ;;Total ram usage:        1 bytes
+   433 ;; Hardware stack levels used: 1
+   434 ;; Hardware stack levels required when called: 1
+   435 ;; This function calls:
+   436 ;;		_MSDelay
+   437 ;; This function is called by:
+   438 ;;		_main
+   439 ;; This function uses a non-reentrant model
+   440 ;;
+   441                           
+   442                           	psect	text1
+   443  003C28                     __ptext1:
+   444                           	callstack 0
+   445  003C28                     _lcddata:
+   446                           	callstack 0
+   447  003C28  FFFF               	dw	65535	; assembler added errata NOP
+   448                           
+   449                           ;incstack = 0
+   450                           ;lcddata@value stored from wreg
+   451  003C2A  6E11               	movwf	lcddata@value^0,c
+   452                           
+   453                           ;main.c: 154: PORTD = value;
+   454  003C2C  C011  FF83         	movff	lcddata@value,3971	;volatile
+   455                           
+   456                           ;main.c: 155: PORTBbits.RB0 = 1;
+   457  003C30  8081               	bsf	129,0,c	;volatile
+   458                           
+   459                           ;main.c: 156: PORTBbits.RB1 = 0;
+   460  003C32  9281               	bcf	129,1,c	;volatile
+   461                           
+   462                           ;main.c: 157: PORTBbits.RB2 = 1;
+   463  003C34  8481               	bsf	129,2,c	;volatile
+   464                           
+   465                           ;main.c: 158: MSDelay(1);
+   466  003C36  0E00               	movlw	0
+   467  003C38  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   468  003C3A  0E01               	movlw	1
+   469  003C3C  6E0B               	movwf	MSDelay@itime^0,c
+   470  003C3E  EC56  F01E         	call	_MSDelay	;wreg free
+   471                           
+   472                           ;main.c: 159: PORTBbits.RB2 = 0;
+   473  003C42  9481               	bcf	129,2,c	;volatile
+   474  003C44  0012               	return		;funcret
+   475  003C46  FFFF               	dw	65535	; errata NOP
+   476  003C48                     __end_of_lcddata:
+   477                           	callstack 0
+   478                           
+   479 ;; *************** function _lcdcmd *****************
+   480 ;; Defined at:
+   481 ;;		line 144 in file "main.c"
+   482 ;; Parameters:    Size  Location     Type
+   483 ;;  value           1    wreg     unsigned char 
+   484 ;; Auto vars:     Size  Location     Type
+   485 ;;  value           1    6[COMRAM] unsigned char 
+   486 ;; Return value:  Size  Location     Type
+   487 ;;                  1    wreg      void 
+   488 ;; Registers used:
+   489 ;;		wreg, status,2, status,0, cstack
+   490 ;; Tracked objects:
+   491 ;;		On entry : 0/0
+   492 ;;		On exit  : 0/0
+   493 ;;		Unchanged: 0/0
+   494 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   495 ;;      Params:         0       0       0       0       0       0       0
+   496 ;;      Locals:         1       0       0       0       0       0       0
+   497 ;;      Temps:          0       0       0       0       0       0       0
+   498 ;;      Totals:         1       0       0       0       0       0       0
+   499 ;;Total ram usage:        1 bytes
+   500 ;; Hardware stack levels used: 1
+   501 ;; Hardware stack levels required when called: 1
+   502 ;; This function calls:
+   503 ;;		_MSDelay
+   504 ;; This function is called by:
+   505 ;;		_main
+   506 ;; This function uses a non-reentrant model
+   507 ;;
+   508                           
+   509                           	psect	text2
+   510  003C08                     __ptext2:
+   511                           	callstack 0
+   512  003C08                     _lcdcmd:
+   513                           	callstack 0
+   514  003C08  FFFF               	dw	65535	; assembler added errata NOP
+   515                           
+   516                           ;incstack = 0
+   517                           ;lcdcmd@value stored from wreg
+   518  003C0A  6E11               	movwf	lcdcmd@value^0,c
+   519                           
+   520                           ;main.c: 145: PORTD = value;
+   521  003C0C  C011  FF83         	movff	lcdcmd@value,3971	;volatile
+   522                           
+   523                           ;main.c: 146: PORTBbits.RB0 = 0;
+   524  003C10  9081               	bcf	129,0,c	;volatile
+   525                           
+   526                           ;main.c: 147: PORTBbits.RB1 = 0;
+   527  003C12  9281               	bcf	129,1,c	;volatile
+   528                           
+   529                           ;main.c: 148: PORTBbits.RB2 = 1;
+   530  003C14  8481               	bsf	129,2,c	;volatile
+   531                           
+   532                           ;main.c: 149: MSDelay(1);
+   533  003C16  0E00               	movlw	0
+   534  003C18  6E0C               	movwf	(MSDelay@itime+1)^0,c
+   535  003C1A  0E01               	movlw	1
+   536  003C1C  6E0B               	movwf	MSDelay@itime^0,c
+   537  003C1E  EC56  F01E         	call	_MSDelay	;wreg free
+   538                           
+   539                           ;main.c: 150: PORTBbits.RB2 = 0;
+   540  003C22  9481               	bcf	129,2,c	;volatile
+   541  003C24  0012               	return		;funcret
+   542  003C26  FFFF               	dw	65535	; errata NOP
+   543  003C28                     __end_of_lcdcmd:
+   544                           	callstack 0
+   545                           
+   546 ;; *************** function _MSDelay *****************
+   547 ;; Defined at:
+   548 ;;		line 162 in file "main.c"
+   549 ;; Parameters:    Size  Location     Type
+   550 ;;  itime           2    0[COMRAM] unsigned int 
+   551 ;; Auto vars:     Size  Location     Type
+   552 ;;  j               2    4[COMRAM] unsigned int 
+   553 ;;  i               2    2[COMRAM] unsigned int 
+   554 ;; Return value:  Size  Location     Type
+   555 ;;                  1    wreg      void 
+   556 ;; Registers used:
+   557 ;;		wreg, status,2, status,0
+   558 ;; Tracked objects:
+   559 ;;		On entry : 0/0
+   560 ;;		On exit  : 0/0
+   561 ;;		Unchanged: 0/0
+   562 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   563 ;;      Params:         2       0       0       0       0       0       0
+   564 ;;      Locals:         4       0       0       0       0       0       0
+   565 ;;      Temps:          0       0       0       0       0       0       0
+   566 ;;      Totals:         6       0       0       0       0       0       0
+   567 ;;Total ram usage:        6 bytes
+   568 ;; Hardware stack levels used: 1
+   569 ;; This function calls:
+   570 ;;		Nothing
+   571 ;; This function is called by:
+   572 ;;		_main
+   573 ;;		_lcdcmd
+   574 ;;		_lcddata
+   575 ;; This function uses a non-reentrant model
+   576 ;;
+   577                           
+   578                           	psect	text3
+   579  003CAC                     __ptext3:
+   580                           	callstack 0
+   581  003CAC                     _MSDelay:
+   582                           	callstack 0
+   583  003CAC  FFFF               	dw	65535	; assembler added errata NOP
+   584                           
+   585                           ;main.c: 163: unsigned int i, j;;main.c: 164: for (i = 0; i < itime; i++)
+   586                           
+   587                           ;incstack = 0
+   588  003CAE  0E00               	movlw	0
+   589  003CB0  6E0E               	movwf	(MSDelay@i+1)^0,c
+   590  003CB2  0E00               	movlw	0
+   591  003CB4  6E0D               	movwf	MSDelay@i^0,c
+   592  003CB6  D010               	goto	l1057
+   593  003CB8                     l1045:
+   594  003CB8  FFFF               	dw	65535	; assembler added errata NOP
+   595                           
+   596                           ;main.c: 165: for (j = 0; j < 135; j++);
+   597  003CBA  0E00               	movlw	0
+   598  003CBC  6E10               	movwf	(MSDelay@j+1)^0,c
+   599  003CBE  0E00               	movlw	0
+   600  003CC0  6E0F               	movwf	MSDelay@j^0,c
+   601  003CC2                     l1051:
+   602  003CC2  FFFF               	dw	65535	; assembler added errata NOP
+   603  003CC4  4A0F               	infsnz	MSDelay@j^0,f,c
+   604  003CC6  2A10               	incf	(MSDelay@j+1)^0,f,c
+   605  003CC8  5010               	movf	(MSDelay@j+1)^0,w,c
+   606  003CCA  E104               	bnz	u180
+   607  003CCC  0E87               	movlw	135
+   608  003CCE  5C0F               	subwf	MSDelay@j^0,w,c
+   609  003CD0  A0D8               	btfss	status,0,c
+   610  003CD2  D7F7               	goto	l1051
+   611  003CD4                     u180:
+   612  003CD4  4A0D               	infsnz	MSDelay@i^0,f,c
+   613  003CD6  2A0E               	incf	(MSDelay@i+1)^0,f,c
+   614  003CD8                     l1057:
+   615  003CD8  FFFF               	dw	65535	; assembler added errata NOP
+   616  003CDA  500B               	movf	MSDelay@itime^0,w,c
+   617  003CDC  5C0D               	subwf	MSDelay@i^0,w,c
+   618  003CDE  500C               	movf	(MSDelay@itime+1)^0,w,c
+   619  003CE0  580E               	subwfb	(MSDelay@i+1)^0,w,c
+   620  003CE2  B0D8               	btfsc	status,0,c
+   621  003CE4  0012               	return		;funcret
+   622  003CE6  FFFF               	dw	65535	; assembler added errata NOP
+   623  003CE8  D7E7               	goto	l1045
+   624  003CEA  FFFF               	dw	65535	; errata NOP
+   625  003CEC                     __end_of_MSDelay:
+   626                           	callstack 0
+   627                           
+   628 ;; *************** function _Seperate_Digit *****************
+   629 ;; Defined at:
+   630 ;;		line 133 in file "main.c"
+   631 ;; Parameters:    Size  Location     Type
+   632 ;;		None
+   633 ;; Auto vars:     Size  Location     Type
+   634 ;;		None
+   635 ;; Return value:  Size  Location     Type
+   636 ;;                  1    wreg      void 
+   637 ;; Registers used:
+   638 ;;		wreg, status,2, status,0, cstack
+   639 ;; Tracked objects:
+   640 ;;		On entry : 0/0
+   641 ;;		On exit  : 0/0
+   642 ;;		Unchanged: 0/0
+   643 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   644 ;;      Params:         0       0       0       0       0       0       0
+   645 ;;      Locals:         0       0       0       0       0       0       0
+   646 ;;      Temps:          2       0       0       0       0       0       0
+   647 ;;      Totals:         2       0       0       0       0       0       0
+   648 ;;Total ram usage:        2 bytes
+   649 ;; Hardware stack levels used: 1
+   650 ;; Hardware stack levels required when called: 1
+   651 ;; This function calls:
+   652 ;;		___awdiv
+   653 ;;		___awmod
+   654 ;; This function is called by:
+   655 ;;		_main
+   656 ;; This function uses a non-reentrant model
+   657 ;;
+   658                           
+   659                           	psect	text4
+   660  003E4E                     __ptext4:
+   661                           	callstack 0
+   662  003E4E                     _Seperate_Digit:
+   663                           	callstack 0
+   664  003E4E  FFFF               	dw	65535	; assembler added errata NOP
+   665                           
+   666                           ;main.c: 134: finalNum = (ADCHigher * 256) + ADCLower;
+   667                           
+   668                           ;incstack = 0
+   669  003E50  5015               	movf	_ADCHigher^0,w,c
+   670  003E52  6E14               	movwf	(??_Seperate_Digit+1)^0,c
+   671  003E54  6A13               	clrf	??_Seperate_Digit^0,c
+   672  003E56  5017               	movf	_ADCLower^0,w,c
+   673  003E58  2413               	addwf	??_Seperate_Digit^0,w,c
+   674  003E5A  6E09               	movwf	_finalNum^0,c
+   675  003E5C  5018               	movf	(_ADCLower+1)^0,w,c
+   676  003E5E  2014               	addwfc	(??_Seperate_Digit+1)^0,w,c
+   677  003E60  6E0A               	movwf	(_finalNum+1)^0,c
+   678                           
+   679                           ;main.c: 135: num1 = finalNum % 10;
+   680  003E62  C009  F00B         	movff	_finalNum,___awmod@dividend
+   681  003E66  C00A  F00C         	movff	_finalNum+1,___awmod@dividend+1
+   682  003E6A  0E00               	movlw	0
+   683  003E6C  6E0E               	movwf	(___awmod@divisor+1)^0,c
+   684  003E6E  0E0A               	movlw	10
+   685  003E70  6E0D               	movwf	___awmod@divisor^0,c
+   686  003E72  EC99  F01E         	call	___awmod	;wreg free
+   687  003E76  C00B  F007         	movff	?___awmod,_num1
+   688  003E7A  C00C  F008         	movff	?___awmod+1,_num1+1
+   689                           
+   690                           ;main.c: 136: finalNum /= 10;
+   691  003E7E  C009  F00B         	movff	_finalNum,___awdiv@dividend
+   692  003E82  C00A  F00C         	movff	_finalNum+1,___awdiv@dividend+1
+   693  003E86  0E00               	movlw	0
+   694  003E88  6E0E               	movwf	(___awdiv@divisor+1)^0,c
+   695  003E8A  0E0A               	movlw	10
+   696  003E8C  6E0D               	movwf	___awdiv@divisor^0,c
+   697  003E8E  ECDB  F01E         	call	___awdiv	;wreg free
+   698  003E92  C00B  F009         	movff	?___awdiv,_finalNum
+   699  003E96  C00C  F00A         	movff	?___awdiv+1,_finalNum+1
+   700                           
+   701                           ;main.c: 137: num2 = finalNum % 10;
+   702  003E9A  C009  F00B         	movff	_finalNum,___awmod@dividend
+   703  003E9E  C00A  F00C         	movff	_finalNum+1,___awmod@dividend+1
+   704  003EA2  0E00               	movlw	0
+   705  003EA4  6E0E               	movwf	(___awmod@divisor+1)^0,c
+   706  003EA6  0E0A               	movlw	10
+   707  003EA8  6E0D               	movwf	___awmod@divisor^0,c
+   708  003EAA  EC99  F01E         	call	___awmod	;wreg free
+   709  003EAE  C00B  F005         	movff	?___awmod,_num2
+   710  003EB2  C00C  F006         	movff	?___awmod+1,_num2+1
+   711                           
+   712                           ;main.c: 138: finalNum /= 10;
+   713  003EB6  C009  F00B         	movff	_finalNum,___awdiv@dividend
+   714  003EBA  C00A  F00C         	movff	_finalNum+1,___awdiv@dividend+1
+   715  003EBE  0E00               	movlw	0
+   716  003EC0  6E0E               	movwf	(___awdiv@divisor+1)^0,c
+   717  003EC2  0E0A               	movlw	10
+   718  003EC4  6E0D               	movwf	___awdiv@divisor^0,c
+   719  003EC6  ECDB  F01E         	call	___awdiv	;wreg free
+   720  003ECA  C00B  F009         	movff	?___awdiv,_finalNum
+   721  003ECE  C00C  F00A         	movff	?___awdiv+1,_finalNum+1
+   722                           
+   723                           ;main.c: 139: num3 = finalNum % 10;
+   724  003ED2  C009  F00B         	movff	_finalNum,___awmod@dividend
+   725  003ED6  C00A  F00C         	movff	_finalNum+1,___awmod@dividend+1
+   726  003EDA  0E00               	movlw	0
+   727  003EDC  6E0E               	movwf	(___awmod@divisor+1)^0,c
+   728  003EDE  0E0A               	movlw	10
+   729  003EE0  6E0D               	movwf	___awmod@divisor^0,c
+   730  003EE2  EC99  F01E         	call	___awmod	;wreg free
+   731  003EE6  C00B  F003         	movff	?___awmod,_num3
+   732  003EEA  C00C  F004         	movff	?___awmod+1,_num3+1
+   733                           
+   734                           ;main.c: 140: finalNum /= 10;
+   735  003EEE  C009  F00B         	movff	_finalNum,___awdiv@dividend
+   736  003EF2  C00A  F00C         	movff	_finalNum+1,___awdiv@dividend+1
+   737  003EF6  0E00               	movlw	0
+   738  003EF8  6E0E               	movwf	(___awdiv@divisor+1)^0,c
+   739  003EFA  0E0A               	movlw	10
+   740  003EFC  6E0D               	movwf	___awdiv@divisor^0,c
+   741  003EFE  ECDB  F01E         	call	___awdiv	;wreg free
+   742  003F02  C00B  F009         	movff	?___awdiv,_finalNum
+   743  003F06  C00C  F00A         	movff	?___awdiv+1,_finalNum+1
+   744                           
+   745                           ;main.c: 141: num4 = finalNum;
+   746  003F0A  C009  F001         	movff	_finalNum,_num4
+   747  003F0E  C00A  F002         	movff	_finalNum+1,_num4+1
+   748  003F12  0012               	return		;funcret
+   749  003F14  FFFF               	dw	65535	; errata NOP
+   750  003F16                     __end_of_Seperate_Digit:
+   751                           	callstack 0
+   752                           
+   753 ;; *************** function ___awmod *****************
+   754 ;; Defined at:
+   755 ;;		line 7 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awmod.c"
+   756 ;; Parameters:    Size  Location     Type
+   757 ;;  dividend        2    0[COMRAM] int 
+   758 ;;  divisor         2    2[COMRAM] int 
+   759 ;; Auto vars:     Size  Location     Type
+   760 ;;  sign            1    5[COMRAM] unsigned char 
+   761 ;;  counter         1    4[COMRAM] unsigned char 
+   762 ;; Return value:  Size  Location     Type
+   763 ;;                  2    0[COMRAM] int 
+   764 ;; Registers used:
+   765 ;;		wreg, status,2, status,0
+   766 ;; Tracked objects:
+   767 ;;		On entry : 0/0
+   768 ;;		On exit  : 0/0
+   769 ;;		Unchanged: 0/0
+   770 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   771 ;;      Params:         4       0       0       0       0       0       0
+   772 ;;      Locals:         2       0       0       0       0       0       0
+   773 ;;      Temps:          0       0       0       0       0       0       0
+   774 ;;      Totals:         6       0       0       0       0       0       0
+   775 ;;Total ram usage:        6 bytes
+   776 ;; Hardware stack levels used: 1
+   777 ;; This function calls:
+   778 ;;		Nothing
+   779 ;; This function is called by:
+   780 ;;		_Seperate_Digit
+   781 ;; This function uses a non-reentrant model
+   782 ;;
+   783                           
+   784                           	psect	text5
+   785  003D32                     __ptext5:
+   786                           	callstack 0
+   787  003D32                     ___awmod:
+   788                           	callstack 0
+   789  003D32  FFFF               	dw	65535	; assembler added errata NOP
+   790                           
+   791                           ;incstack = 0
+   792  003D34  0E00               	movlw	0
+   793  003D36  6E10               	movwf	___awmod@sign^0,c
+   794  003D38  AE0C               	btfss	(___awmod@dividend+1)^0,7,c
+   795  003D3A  D006               	goto	l1127
+   796  003D3C  6C0B               	negf	___awmod@dividend^0,c
+   797  003D3E  1E0C               	comf	(___awmod@dividend+1)^0,f,c
+   798  003D40  B0D8               	btfsc	status,0,c
+   799  003D42  2A0C               	incf	(___awmod@dividend+1)^0,f,c
+   800  003D44  0E01               	movlw	1
+   801  003D46  6E10               	movwf	___awmod@sign^0,c
+   802  003D48                     l1127:
+   803  003D48  FFFF               	dw	65535	; assembler added errata NOP
+   804  003D4A  AE0E               	btfss	(___awmod@divisor+1)^0,7,c
+   805  003D4C  D004               	goto	l1131
+   806  003D4E  6C0D               	negf	___awmod@divisor^0,c
+   807  003D50  1E0E               	comf	(___awmod@divisor+1)^0,f,c
+   808  003D52  B0D8               	btfsc	status,0,c
+   809  003D54  2A0E               	incf	(___awmod@divisor+1)^0,f,c
+   810  003D56                     l1131:
+   811  003D56  FFFF               	dw	65535	; assembler added errata NOP
+   812  003D58  500D               	movf	___awmod@divisor^0,w,c
+   813  003D5A  100E               	iorwf	(___awmod@divisor+1)^0,w,c
+   814  003D5C  B4D8               	btfsc	status,2,c
+   815  003D5E  D01C               	goto	l1147
+   816  003D60  0E01               	movlw	1
+   817  003D62  6E0F               	movwf	___awmod@counter^0,c
+   818  003D64  D005               	goto	l1137
+   819  003D66                     l1135:
+   820  003D66  FFFF               	dw	65535	; assembler added errata NOP
+   821  003D68  90D8               	bcf	status,0,c
+   822  003D6A  360D               	rlcf	___awmod@divisor^0,f,c
+   823  003D6C  360E               	rlcf	(___awmod@divisor+1)^0,f,c
+   824  003D6E  2A0F               	incf	___awmod@counter^0,f,c
+   825  003D70                     l1137:
+   826  003D70  FFFF               	dw	65535	; assembler added errata NOP
+   827  003D72  AE0E               	btfss	(___awmod@divisor+1)^0,7,c
+   828  003D74  D7F8               	goto	l1135
+   829  003D76                     u310:
+   830  003D76  FFFF               	dw	65535	; assembler added errata NOP
+   831  003D78  500D               	movf	___awmod@divisor^0,w,c
+   832  003D7A  5C0B               	subwf	___awmod@dividend^0,w,c
+   833  003D7C  500E               	movf	(___awmod@divisor+1)^0,w,c
+   834  003D7E  580C               	subwfb	(___awmod@dividend+1)^0,w,c
+   835  003D80  A0D8               	btfss	status,0,c
+   836  003D82  D004               	goto	l1143
+   837  003D84  500D               	movf	___awmod@divisor^0,w,c
+   838  003D86  5E0B               	subwf	___awmod@dividend^0,f,c
+   839  003D88  500E               	movf	(___awmod@divisor+1)^0,w,c
+   840  003D8A  5A0C               	subwfb	(___awmod@dividend+1)^0,f,c
+   841  003D8C                     l1143:
+   842  003D8C  FFFF               	dw	65535	; assembler added errata NOP
+   843  003D8E  90D8               	bcf	status,0,c
+   844  003D90  320E               	rrcf	(___awmod@divisor+1)^0,f,c
+   845  003D92  320D               	rrcf	___awmod@divisor^0,f,c
+   846  003D94  2E0F               	decfsz	___awmod@counter^0,f,c
+   847  003D96  D7EF               	goto	u310
+   848  003D98                     l1147:
+   849  003D98  FFFF               	dw	65535	; assembler added errata NOP
+   850  003D9A  5010               	movf	___awmod@sign^0,w,c
+   851  003D9C  B4D8               	btfsc	status,2,c
+   852  003D9E  D004               	goto	l1151
+   853  003DA0  6C0B               	negf	___awmod@dividend^0,c
+   854  003DA2  1E0C               	comf	(___awmod@dividend+1)^0,f,c
+   855  003DA4  B0D8               	btfsc	status,0,c
+   856  003DA6  2A0C               	incf	(___awmod@dividend+1)^0,f,c
+   857  003DA8                     l1151:
+   858  003DA8  FFFF               	dw	65535	; assembler added errata NOP
+   859  003DAA  C00B  F00B         	movff	___awmod@dividend,?___awmod
+   860  003DAE  C00C  F00C         	movff	___awmod@dividend+1,?___awmod+1
+   861  003DB2  0012               	return		;funcret
+   862  003DB4  FFFF               	dw	65535	; errata NOP
+   863  003DB6                     __end_of___awmod:
+   864                           	callstack 0
+   865                           
+   866 ;; *************** function ___awdiv *****************
+   867 ;; Defined at:
+   868 ;;		line 7 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awdiv.c"
+   869 ;; Parameters:    Size  Location     Type
+   870 ;;  dividend        2    0[COMRAM] int 
+   871 ;;  divisor         2    2[COMRAM] int 
+   872 ;; Auto vars:     Size  Location     Type
+   873 ;;  quotient        2    6[COMRAM] int 
+   874 ;;  sign            1    5[COMRAM] unsigned char 
+   875 ;;  counter         1    4[COMRAM] unsigned char 
+   876 ;; Return value:  Size  Location     Type
+   877 ;;                  2    0[COMRAM] int 
+   878 ;; Registers used:
+   879 ;;		wreg, status,2, status,0
+   880 ;; Tracked objects:
+   881 ;;		On entry : 0/0
+   882 ;;		On exit  : 0/0
+   883 ;;		Unchanged: 0/0
+   884 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   885 ;;      Params:         4       0       0       0       0       0       0
+   886 ;;      Locals:         4       0       0       0       0       0       0
+   887 ;;      Temps:          0       0       0       0       0       0       0
+   888 ;;      Totals:         8       0       0       0       0       0       0
+   889 ;;Total ram usage:        8 bytes
+   890 ;; Hardware stack levels used: 1
+   891 ;; This function calls:
+   892 ;;		Nothing
+   893 ;; This function is called by:
+   894 ;;		_Seperate_Digit
+   895 ;; This function uses a non-reentrant model
+   896 ;;
+   897                           
+   898                           	psect	text6
+   899  003DB6                     __ptext6:
+   900                           	callstack 0
+   901  003DB6                     ___awdiv:
+   902                           	callstack 0
+   903  003DB6  FFFF               	dw	65535	; assembler added errata NOP
+   904                           
+   905                           ;incstack = 0
+   906  003DB8  0E00               	movlw	0
+   907  003DBA  6E10               	movwf	___awdiv@sign^0,c
+   908  003DBC  AE0E               	btfss	(___awdiv@divisor+1)^0,7,c
+   909  003DBE  D006               	goto	l1083
+   910  003DC0  6C0D               	negf	___awdiv@divisor^0,c
+   911  003DC2  1E0E               	comf	(___awdiv@divisor+1)^0,f,c
+   912  003DC4  B0D8               	btfsc	status,0,c
+   913  003DC6  2A0E               	incf	(___awdiv@divisor+1)^0,f,c
+   914  003DC8  0E01               	movlw	1
+   915  003DCA  6E10               	movwf	___awdiv@sign^0,c
+   916  003DCC                     l1083:
+   917  003DCC  FFFF               	dw	65535	; assembler added errata NOP
+   918  003DCE  AE0C               	btfss	(___awdiv@dividend+1)^0,7,c
+   919  003DD0  D006               	goto	l1089
+   920  003DD2  6C0B               	negf	___awdiv@dividend^0,c
+   921  003DD4  1E0C               	comf	(___awdiv@dividend+1)^0,f,c
+   922  003DD6  B0D8               	btfsc	status,0,c
+   923  003DD8  2A0C               	incf	(___awdiv@dividend+1)^0,f,c
+   924  003DDA  0E01               	movlw	1
+   925  003DDC  1A10               	xorwf	___awdiv@sign^0,f,c
+   926  003DDE                     l1089:
+   927  003DDE  FFFF               	dw	65535	; assembler added errata NOP
+   928  003DE0  0E00               	movlw	0
+   929  003DE2  6E12               	movwf	(___awdiv@quotient+1)^0,c
+   930  003DE4  0E00               	movlw	0
+   931  003DE6  6E11               	movwf	___awdiv@quotient^0,c
+   932  003DE8  500D               	movf	___awdiv@divisor^0,w,c
+   933  003DEA  100E               	iorwf	(___awdiv@divisor+1)^0,w,c
+   934  003DEC  B4D8               	btfsc	status,2,c
+   935  003DEE  D020               	goto	l1111
+   936  003DF0  0E01               	movlw	1
+   937  003DF2  6E0F               	movwf	___awdiv@counter^0,c
+   938  003DF4  D005               	goto	l1097
+   939  003DF6                     l1095:
+   940  003DF6  FFFF               	dw	65535	; assembler added errata NOP
+   941  003DF8  90D8               	bcf	status,0,c
+   942  003DFA  360D               	rlcf	___awdiv@divisor^0,f,c
+   943  003DFC  360E               	rlcf	(___awdiv@divisor+1)^0,f,c
+   944  003DFE  2A0F               	incf	___awdiv@counter^0,f,c
+   945  003E00                     l1097:
+   946  003E00  FFFF               	dw	65535	; assembler added errata NOP
+   947  003E02  AE0E               	btfss	(___awdiv@divisor+1)^0,7,c
+   948  003E04  D7F8               	goto	l1095
+   949  003E06                     u250:
+   950  003E06  FFFF               	dw	65535	; assembler added errata NOP
+   951  003E08  90D8               	bcf	status,0,c
+   952  003E0A  3611               	rlcf	___awdiv@quotient^0,f,c
+   953  003E0C  3612               	rlcf	(___awdiv@quotient+1)^0,f,c
+   954  003E0E  500D               	movf	___awdiv@divisor^0,w,c
+   955  003E10  5C0B               	subwf	___awdiv@dividend^0,w,c
+   956  003E12  500E               	movf	(___awdiv@divisor+1)^0,w,c
+   957  003E14  580C               	subwfb	(___awdiv@dividend+1)^0,w,c
+   958  003E16  A0D8               	btfss	status,0,c
+   959  003E18  D005               	goto	l1107
+   960  003E1A  500D               	movf	___awdiv@divisor^0,w,c
+   961  003E1C  5E0B               	subwf	___awdiv@dividend^0,f,c
+   962  003E1E  500E               	movf	(___awdiv@divisor+1)^0,w,c
+   963  003E20  5A0C               	subwfb	(___awdiv@dividend+1)^0,f,c
+   964  003E22  8011               	bsf	___awdiv@quotient^0,0,c
+   965  003E24                     l1107:
+   966  003E24  FFFF               	dw	65535	; assembler added errata NOP
+   967  003E26  90D8               	bcf	status,0,c
+   968  003E28  320E               	rrcf	(___awdiv@divisor+1)^0,f,c
+   969  003E2A  320D               	rrcf	___awdiv@divisor^0,f,c
+   970  003E2C  2E0F               	decfsz	___awdiv@counter^0,f,c
+   971  003E2E  D7EB               	goto	u250
+   972  003E30                     l1111:
+   973  003E30  FFFF               	dw	65535	; assembler added errata NOP
+   974  003E32  5010               	movf	___awdiv@sign^0,w,c
+   975  003E34  B4D8               	btfsc	status,2,c
+   976  003E36  D004               	goto	l1115
+   977  003E38  6C11               	negf	___awdiv@quotient^0,c
+   978  003E3A  1E12               	comf	(___awdiv@quotient+1)^0,f,c
+   979  003E3C  B0D8               	btfsc	status,0,c
+   980  003E3E  2A12               	incf	(___awdiv@quotient+1)^0,f,c
+   981  003E40                     l1115:
+   982  003E40  FFFF               	dw	65535	; assembler added errata NOP
+   983  003E42  C011  F00B         	movff	___awdiv@quotient,?___awdiv
+   984  003E46  C012  F00C         	movff	___awdiv@quotient+1,?___awdiv+1
+   985  003E4A  0012               	return		;funcret
+   986  003E4C  FFFF               	dw	65535	; errata NOP
+   987  003E4E                     __end_of___awdiv:
+   988                           	callstack 0
+   989                           
+   990 ;; *************** function _ADC_CONV *****************
+   991 ;; Defined at:
+   992 ;;		line 124 in file "main.c"
+   993 ;; Parameters:    Size  Location     Type
+   994 ;;		None
+   995 ;; Auto vars:     Size  Location     Type
+   996 ;;		None
+   997 ;; Return value:  Size  Location     Type
+   998 ;;                  1    wreg      void 
+   999 ;; Registers used:
+  1000 ;;		wreg, status,2, status,0, cstack
+  1001 ;; Tracked objects:
+  1002 ;;		On entry : 0/0
+  1003 ;;		On exit  : 0/0
+  1004 ;;		Unchanged: 0/0
+  1005 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1006 ;;      Params:         0       0       0       0       0       0       0
+  1007 ;;      Locals:         0       0       0       0       0       0       0
+  1008 ;;      Temps:          0       0       0       0       0       0       0
+  1009 ;;      Totals:         0       0       0       0       0       0       0
+  1010 ;;Total ram usage:        0 bytes
+  1011 ;; Hardware stack levels used: 1
+  1012 ;; Hardware stack levels required when called: 1
+  1013 ;; This function calls:
+  1014 ;;		_Delay
+  1015 ;; This function is called by:
+  1016 ;;		_main
+  1017 ;; This function uses a non-reentrant model
+  1018 ;;
+  1019                           
+  1020                           	psect	text7
+  1021  003C48                     __ptext7:
+  1022                           	callstack 0
+  1023  003C48                     _ADC_CONV:
+  1024                           	callstack 0
+  1025  003C48  FFFF               	dw	65535	; assembler added errata NOP
+  1026                           
+  1027                           ;main.c: 125: Delay(1);
+  1028                           
+  1029                           ;incstack = 0
+  1030  003C4A  0E00               	movlw	0
+  1031  003C4C  6E0C               	movwf	(Delay@i+1)^0,c
+  1032  003C4E  0E01               	movlw	1
+  1033  003C50  6E0B               	movwf	Delay@i^0,c
+  1034  003C52  EC76  F01E         	call	_Delay	;wreg free
+  1035                           
+  1036                           ;main.c: 126: ADCON0bits.GO = 1;
+  1037  003C56  84C2               	bsf	194,2,c	;volatile
+  1038  003C58                     l57:
+  1039  003C58  FFFF               	dw	65535	; assembler added errata NOP
+  1040  003C5A  B4C2               	btfsc	194,2,c	;volatile
+  1041  003C5C  D7FD               	goto	l57
+  1042                           
+  1043                           ;main.c: 128: ADCLower = ADRESL;
+  1044  003C5E  CFC3 F017          	movff	4035,_ADCLower	;volatile
+  1045  003C62  6A18               	clrf	(_ADCLower+1)^0,c
+  1046                           
+  1047                           ;main.c: 129: ADCHigher = ADRESH;
+  1048  003C64  CFC4 F015          	movff	4036,_ADCHigher	;volatile
+  1049  003C68  6A16               	clrf	(_ADCHigher+1)^0,c
+  1050                           
+  1051                           ;main.c: 130: Delay(250);
+  1052  003C6A  0E00               	movlw	0
+  1053  003C6C  6E0C               	movwf	(Delay@i+1)^0,c
+  1054  003C6E  0EFA               	movlw	250
+  1055  003C70  6E0B               	movwf	Delay@i^0,c
+  1056  003C72  EC76  F01E         	call	_Delay	;wreg free
+  1057  003C76  0012               	return		;funcret
+  1058  003C78  FFFF               	dw	65535	; errata NOP
+  1059  003C7A                     __end_of_ADC_CONV:
+  1060                           	callstack 0
+  1061                           
+  1062 ;; *************** function _Delay *****************
+  1063 ;; Defined at:
+  1064 ;;		line 168 in file "main.c"
+  1065 ;; Parameters:    Size  Location     Type
+  1066 ;;  i               2    0[COMRAM] unsigned int 
+  1067 ;; Auto vars:     Size  Location     Type
+  1068 ;;  k               2    4[COMRAM] int 
+  1069 ;;  j               2    2[COMRAM] int 
+  1070 ;; Return value:  Size  Location     Type
+  1071 ;;                  1    wreg      void 
+  1072 ;; Registers used:
+  1073 ;;		wreg, status,2, status,0
+  1074 ;; Tracked objects:
+  1075 ;;		On entry : 0/0
+  1076 ;;		On exit  : 0/0
+  1077 ;;		Unchanged: 0/0
+  1078 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1079 ;;      Params:         2       0       0       0       0       0       0
+  1080 ;;      Locals:         4       0       0       0       0       0       0
+  1081 ;;      Temps:          0       0       0       0       0       0       0
+  1082 ;;      Totals:         6       0       0       0       0       0       0
+  1083 ;;Total ram usage:        6 bytes
+  1084 ;; Hardware stack levels used: 1
+  1085 ;; This function calls:
+  1086 ;;		Nothing
+  1087 ;; This function is called by:
+  1088 ;;		_main
+  1089 ;;		_ADC_CONV
+  1090 ;; This function uses a non-reentrant model
+  1091 ;;
+  1092                           
+  1093                           	psect	text8
+  1094  003CEC                     __ptext8:
+  1095                           	callstack 0
+  1096  003CEC                     _Delay:
+  1097                           	callstack 0
+  1098  003CEC  FFFF               	dw	65535	; assembler added errata NOP
+  1099                           
+  1100                           ;main.c: 169: for (int j = 0; j < i; j++)
+  1101                           
+  1102                           ;incstack = 0
+  1103  003CEE  0E00               	movlw	0
+  1104  003CF0  6E0E               	movwf	(Delay@j+1)^0,c
+  1105  003CF2  0E00               	movlw	0
+  1106  003CF4  6E0D               	movwf	Delay@j^0,c
+  1107  003CF6  D012               	goto	l1073
+  1108  003CF8                     l1061:
+  1109  003CF8  FFFF               	dw	65535	; assembler added errata NOP
+  1110                           
+  1111                           ;main.c: 170: for (int k = 0; k < 5; k++);
+  1112  003CFA  0E00               	movlw	0
+  1113  003CFC  6E10               	movwf	(Delay@k+1)^0,c
+  1114  003CFE  0E00               	movlw	0
+  1115  003D00  6E0F               	movwf	Delay@k^0,c
+  1116  003D02                     l1067:
+  1117  003D02  FFFF               	dw	65535	; assembler added errata NOP
+  1118  003D04  4A0F               	infsnz	Delay@k^0,f,c
+  1119  003D06  2A10               	incf	(Delay@k+1)^0,f,c
+  1120  003D08  BE10               	btfsc	(Delay@k+1)^0,7,c
+  1121  003D0A  D7FB               	goto	l1067
+  1122  003D0C  5010               	movf	(Delay@k+1)^0,w,c
+  1123  003D0E  E104               	bnz	u200
+  1124  003D10  0E05               	movlw	5
+  1125  003D12  5C0F               	subwf	Delay@k^0,w,c
+  1126  003D14  A0D8               	btfss	status,0,c
+  1127  003D16  D7F5               	goto	l1067
+  1128  003D18                     u200:
+  1129  003D18  4A0D               	infsnz	Delay@j^0,f,c
+  1130  003D1A  2A0E               	incf	(Delay@j+1)^0,f,c
+  1131  003D1C                     l1073:
+  1132  003D1C  FFFF               	dw	65535	; assembler added errata NOP
+  1133  003D1E  500B               	movf	Delay@i^0,w,c
+  1134  003D20  5C0D               	subwf	Delay@j^0,w,c
+  1135  003D22  500C               	movf	(Delay@i+1)^0,w,c
+  1136  003D24  580E               	subwfb	(Delay@j+1)^0,w,c
+  1137  003D26  B0D8               	btfsc	status,0,c
+  1138  003D28  0012               	return		;funcret
+  1139  003D2A  FFFF               	dw	65535	; assembler added errata NOP
+  1140  003D2C  D7E5               	goto	l1061
+  1141  003D2E  FFFF               	dw	65535	; errata NOP
+  1142  003D30                     __end_of_Delay:
+  1143                           	callstack 0
+  1144  003D30  FFFF               	dw	65535	; assembler added errata NOP
+  1145                           
+  1146                           	psect	rparam
+  1147  0000                     
+  1148                           	psect	idloc
+  1149                           
+  1150                           ;Config register IDLOC0 @ 0x200000
+  1151                           ;	unspecified, using default values
+  1152  200000                     	org	2097152
+  1153  200000  FF                 	db	255
+  1154                           
+  1155                           ;Config register IDLOC1 @ 0x200001
+  1156                           ;	unspecified, using default values
+  1157  200001                     	org	2097153
+  1158  200001  FF                 	db	255
+  1159                           
+  1160                           ;Config register IDLOC2 @ 0x200002
+  1161                           ;	unspecified, using default values
+  1162  200002                     	org	2097154
+  1163  200002  FF                 	db	255
+  1164                           
+  1165                           ;Config register IDLOC3 @ 0x200003
+  1166                           ;	unspecified, using default values
+  1167  200003                     	org	2097155
+  1168  200003  FF                 	db	255
+  1169                           
+  1170                           ;Config register IDLOC4 @ 0x200004
+  1171                           ;	unspecified, using default values
+  1172  200004                     	org	2097156
+  1173  200004  FF                 	db	255
+  1174                           
+  1175                           ;Config register IDLOC5 @ 0x200005
+  1176                           ;	unspecified, using default values
+  1177  200005                     	org	2097157
+  1178  200005  FF                 	db	255
+  1179                           
+  1180                           ;Config register IDLOC6 @ 0x200006
+  1181                           ;	unspecified, using default values
+  1182  200006                     	org	2097158
+  1183  200006  FF                 	db	255
+  1184                           
+  1185                           ;Config register IDLOC7 @ 0x200007
+  1186                           ;	unspecified, using default values
+  1187  200007                     	org	2097159
+  1188  200007  FF                 	db	255
+  1189                           
+  1190                           	psect	config
+  1191                           
+  1192                           ; Padding undefined space
+  1193  300000                     	org	3145728
+  1194  300000  FF                 	db	255
+  1195                           
+  1196                           ;Config register CONFIG1H @ 0x300001
+  1197                           ;	Oscillator Selection bits
+  1198                           ;	OSC = XT, XT oscillator
+  1199                           ;	Oscillator System Clock Switch Enable bit
+  1200                           ;	OSCS = OFF, Oscillator system clock switch option is disabled (main oscillator is sour
+      +                          ce)
+  1201  300001                     	org	3145729
+  1202  300001  21                 	db	33
+  1203                           
+  1204                           ;Config register CONFIG2L @ 0x300002
+  1205                           ;	Power-up Timer Enable bit
+  1206                           ;	PWRT = OFF, PWRT disabled
+  1207                           ;	Brown-out Reset Enable bit
+  1208                           ;	BOR = OFF, Brown-out Reset disabled
+  1209                           ;	Brown-out Reset Voltage bits
+  1210                           ;	BORV = 20, VBOR set to 2.0V
+  1211  300002                     	org	3145730
+  1212  300002  0D                 	db	13
+  1213                           
+  1214                           ;Config register CONFIG2H @ 0x300003
+  1215                           ;	Watchdog Timer Enable bit
+  1216                           ;	WDT = OFF, WDT disabled (control is placed on the SWDTEN bit)
+  1217                           ;	Watchdog Timer Postscale Select bits
+  1218                           ;	WDTPS = 128, 1:128
+  1219  300003                     	org	3145731
+  1220  300003  0E                 	db	14
+  1221                           
+  1222                           ; Padding undefined space
+  1223  300004                     	org	3145732
+  1224  300004  FF                 	db	255
+  1225                           
+  1226                           ;Config register CONFIG3H @ 0x300005
+  1227                           ;	CCP2 Mux bit
+  1228                           ;	CCP2MUX = ON, CCP2 input/output is multiplexed with RC1
+  1229  300005                     	org	3145733
+  1230  300005  01                 	db	1
+  1231                           
+  1232                           ;Config register CONFIG4L @ 0x300006
+  1233                           ;	Stack Full/Underflow Reset Enable bit
+  1234                           ;	STVR = OFF, Stack Full/Underflow will not cause RESET
+  1235                           ;	Low Voltage ICSP Enable bit
+  1236                           ;	LVP = OFF, Low Voltage ICSP disabled
+  1237                           ;	Background Debugger Enable bit
+  1238                           ;	DEBUG = 0x1, unprogrammed default
+  1239  300006                     	org	3145734
+  1240  300006  80                 	db	128
+  1241                           
+  1242                           ; Padding undefined space
+  1243  300007                     	org	3145735
+  1244  300007  FF                 	db	255
+  1245                           
+  1246                           ;Config register CONFIG5L @ 0x300008
+  1247                           ;	Code Protection bit
+  1248                           ;	CP0 = OFF, Block 0 (000200-001FFFh) not code protected
+  1249                           ;	Code Protection bit
+  1250                           ;	CP1 = OFF, Block 1 (002000-003FFFh) not code protected
+  1251                           ;	Code Protection bit
+  1252                           ;	CP2 = OFF, Block 2 (004000-005FFFh) not code protected
+  1253                           ;	Code Protection bit
+  1254                           ;	CP3 = OFF, Block 3 (006000-007FFFh) not code protected
+  1255  300008                     	org	3145736
+  1256  300008  0F                 	db	15
+  1257                           
+  1258                           ;Config register CONFIG5H @ 0x300009
+  1259                           ;	Boot Block Code Protection bit
+  1260                           ;	CPB = OFF, Boot Block (000000-0001FFh) not code protected
+  1261                           ;	Data EEPROM Code Protection bit
+  1262                           ;	CPD = OFF, Data EEPROM not code protected
+  1263  300009                     	org	3145737
+  1264  300009  C0                 	db	192
+  1265                           
+  1266                           ;Config register CONFIG6L @ 0x30000A
+  1267                           ;	Write Protection bit
+  1268                           ;	WRT0 = OFF, Block 0 (000200-001FFFh) not write protected
+  1269                           ;	Write Protection bit
+  1270                           ;	WRT1 = OFF, Block 1 (002000-003FFFh) not write protected
+  1271                           ;	Write Protection bit
+  1272                           ;	WRT2 = OFF, Block 2 (004000-005FFFh) not write protected
+  1273                           ;	Write Protection bit
+  1274                           ;	WRT3 = OFF, Block 3 (006000-007FFFh) not write protected
+  1275  30000A                     	org	3145738
+  1276  30000A  0F                 	db	15
+  1277                           
+  1278                           ;Config register CONFIG6H @ 0x30000B
+  1279                           ;	Configuration Register Write Protection bit
+  1280                           ;	WRTC = OFF, Configuration registers (300000-3000FFh) not write protected
+  1281                           ;	Boot Block Write Protection bit
+  1282                           ;	WRTB = OFF, Boot Block (000000-0001FFh) not write protected
+  1283                           ;	Data EEPROM Write Protection bit
+  1284                           ;	WRTD = OFF, Data EEPROM not write protected
+  1285  30000B                     	org	3145739
+  1286  30000B  E0                 	db	224
+  1287                           
+  1288                           ;Config register CONFIG7L @ 0x30000C
+  1289                           ;	Table Read Protection bit
+  1290                           ;	EBTR0 = OFF, Block 0 (000200-001FFFh) not protected from Table Reads executed in other
+      +                           blocks
+  1291                           ;	Table Read Protection bit
+  1292                           ;	EBTR1 = OFF, Block 1 (002000-003FFFh) not protected from Table Reads executed in other
+      +                           blocks
+  1293                           ;	Table Read Protection bit
+  1294                           ;	EBTR2 = OFF, Block 2 (004000-005FFFh) not protected from Table Reads executed in other
+      +                           blocks
+  1295                           ;	Table Read Protection bit
+  1296                           ;	EBTR3 = OFF, Block 3 (006000-007FFFh) not protected from Table Reads executed in other
+      +                           blocks
+  1297  30000C                     	org	3145740
+  1298  30000C  0F                 	db	15
+  1299                           
+  1300                           ;Config register CONFIG7H @ 0x30000D
+  1301                           ;	Boot Block Table Read Protection bit
+  1302                           ;	EBTRB = OFF, Boot Block (000000-0001FFh) not protected from Table Reads executed in ot
+      +                          her blocks
+  1303  30000D                     	org	3145741
+  1304  30000D  40                 	db	64
+  1305                           tosu	equ	0xFFF
+  1306                           tosh	equ	0xFFE
+  1307                           tosl	equ	0xFFD
+  1308                           stkptr	equ	0xFFC
+  1309                           pclatu	equ	0xFFB
+  1310                           pclath	equ	0xFFA
+  1311                           pcl	equ	0xFF9
+  1312                           tblptru	equ	0xFF8
+  1313                           tblptrh	equ	0xFF7
+  1314                           tblptrl	equ	0xFF6
+  1315                           tablat	equ	0xFF5
+  1316                           prodh	equ	0xFF4
+  1317                           prodl	equ	0xFF3
+  1318                           indf0	equ	0xFEF
+  1319                           postinc0	equ	0xFEE
+  1320                           postdec0	equ	0xFED
+  1321                           preinc0	equ	0xFEC
+  1322                           plusw0	equ	0xFEB
+  1323                           fsr0h	equ	0xFEA
+  1324                           fsr0l	equ	0xFE9
+  1325                           wreg	equ	0xFE8
+  1326                           indf1	equ	0xFE7
+  1327                           postinc1	equ	0xFE6
+  1328                           postdec1	equ	0xFE5
+  1329                           preinc1	equ	0xFE4
+  1330                           plusw1	equ	0xFE3
+  1331                           fsr1h	equ	0xFE2
+  1332                           fsr1l	equ	0xFE1
+  1333                           bsr	equ	0xFE0
+  1334                           indf2	equ	0xFDF
+  1335                           postinc2	equ	0xFDE
+  1336                           postdec2	equ	0xFDD
+  1337                           preinc2	equ	0xFDC
+  1338                           plusw2	equ	0xFDB
+  1339                           fsr2h	equ	0xFDA
+  1340                           fsr2l	equ	0xFD9
+  1341                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        4
+    BSS         10
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          127     10      24
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_Seperate_Digit
+    _lcddata->_MSDelay
+    _lcdcmd->_MSDelay
+    _Seperate_Digit->___awdiv
+    _ADC_CONV->_Delay
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    4976
+                           _ADC_CONV
+                              _Delay
+                            _MSDelay
+                     _Seperate_Digit
+                             _lcdcmd
+                            _lcddata
+ ---------------------------------------------------------------------------------
+ (1) _lcddata                                              1     1      0     798
+                                              6 COMRAM     1     1      0
+                            _MSDelay
+ ---------------------------------------------------------------------------------
+ (1) _lcdcmd                                               1     1      0     798
+                                              6 COMRAM     1     1      0
+                            _MSDelay
+ ---------------------------------------------------------------------------------
+ (2) _MSDelay                                              6     4      2     776
+                                              0 COMRAM     6     4      2
+ ---------------------------------------------------------------------------------
+ (1) _Seperate_Digit                                       2     2      0    1508
+                                              8 COMRAM     2     2      0
+                            ___awdiv
+                            ___awmod
+ ---------------------------------------------------------------------------------
+ (2) ___awmod                                              6     2      4     752
+                                              0 COMRAM     6     2      4
+ ---------------------------------------------------------------------------------
+ (2) ___awdiv                                              8     4      4     756
+                                              0 COMRAM     8     4      4
+ ---------------------------------------------------------------------------------
+ (1) _ADC_CONV                                             0     0      0     548
+                              _Delay
+ ---------------------------------------------------------------------------------
+ (1) _Delay                                                6     4      2     548
+                                              0 COMRAM     6     4      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _ADC_CONV
+     _Delay
+   _Delay
+   _MSDelay
+   _Seperate_Digit
+     ___awdiv
+     ___awmod
+   _lcdcmd
+     _MSDelay
+   _lcddata
+     _MSDelay
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             5FF      0       0      17        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK5           100      0       0      16        0.0%
+BANK5              100      0       0      14        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F      A      18       1       18.9%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      18      15        0.0%
+DATA                 0      0      18       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                   Fri Jul 23 21:42:10 2021
+
+                                                                l57 3C58  
+                                                      ___awdiv@sign 0010  
+                                                               u200 3D18  
+                                                               u310 3D76  
+                                                               u250 3E06  
+                                                               u180 3CD4  
+                                                       lcdcmd@value 0011  
+                                                      ___awmod@sign 0010  
+                                                               wreg 000FE8  
+                                                              l1111 3E30  
+                                                              l1115 3E40  
+                                                              l1107 3E24  
+                                                              l1131 3D56  
+                                                              l1051 3CC2  
+                                                              l1061 3CF8  
+                                                              l1045 3CB8  
+                                                              l1151 3DA8  
+                                                              l1143 3D8C  
+                                                              l1135 3D66  
+                                                              l1127 3D48  
+                                                              l1073 3D1C  
+                                                              l1137 3D70  
+                                                              l1057 3CD8  
+                                                              l1067 3D02  
+                                                              l1083 3DCC  
+                                                              l1147 3D98  
+                                                              l1229 3F92  
+                                                              l1095 3DF6  
+                                                              l1097 3E00  
+                                                              l1089 3DDE  
+                                                   __end_of_MSDelay 3CEC  
+                                                  __end_of_ADC_CONV 3C7A  
+                                                              _main 3F16  
+                                                              _num1 0007  
+                                                              _num2 0005  
+                                                              _num3 0003  
+                                                              _num4 0001  
+                                                      lcddata@value 0011  
+                                                              fsr1l 000FE1  
+                                                              start 0002  
+                                                      ___param_bank 000000  
+                                                             ?_main 000B  
+                                                   __end_of___awdiv 3E4E  
+                                                   __end_of___awmod 3DB6  
+                                                   ___awdiv@divisor 000D  
+                                                   ___awdiv@counter 000F  
+                                                             _PORTD 000F83  
+                                                             _TRISB 000F93  
+                                                             _TRISD 000F95  
+                                                             _Delay 3CEC  
+                                                   __end_of_lcddata 3C48  
+                                                             tablat 000FF5  
+                                                             status 000FD8  
+                                                    _Seperate_Digit 3E4E  
+                                                   __initialization 3C7A  
+                                                      __end_of_main 4000  
+                                                            ??_main 0015  
+                                                     __activetblptr 000000  
+                                                            ?_Delay 000B  
+                                                         ??_MSDelay 000D  
+                                                            _ADCON0 000FC2  
+                                                            _ADCON1 000FC1  
+                                                            _ADRESH 000FC4  
+                                                            _ADRESL 000FC3  
+                                                  ___awdiv@dividend 000B  
+                                                            Delay@i 000B  
+                                                            Delay@j 000D  
+                                                            Delay@k 000F  
+                                            __end_of_Seperate_Digit 3F16  
+                                                         ??___awdiv 000F  
+                                                         ??___awmod 000F  
+                                                            _lcdcmd 3C08  
+                                                            clear_0 3CA0  
+                                                  ___awdiv@quotient 0011  
+                                                   ___awmod@divisor 000D  
+                                                            isa$std 000001  
+                                                   ___awmod@counter 000F  
+                                                         ??_lcddata 0011  
+                                                         ?_ADC_CONV 000B  
+                                                      __pdataCOMRAM 0015  
+                                                            tblptrh 000FF7  
+                                                            tblptrl 000FF6  
+                                                            tblptru 000FF8  
+                                                        __accesstop 0080  
+                                           __end_of__initialization 3CA6  
+                                                     ___rparam_used 000001  
+                                                   ?_Seperate_Digit 000B  
+                                                     __end_of_Delay 3D30  
+                                                    __pcstackCOMRAM 000B  
+                                                        ??_ADC_CONV 0011  
+                                                           ??_Delay 000D  
+                                                           ?_lcdcmd 000B  
+                                                           _MSDelay 3CAC  
+                                                         _ADCHigher 0015  
+                                                           __Hparam 0000  
+                                                           __Lparam 0000  
+                                                           ___awdiv 3DB6  
+                                                           ___awmod 3D32  
+                                                   __size_of_lcdcmd 0020  
+                                                           __pcinit 3C7A  
+                                                           __ramtop 0600  
+                                                           __ptext0 3F16  
+                                                           __ptext1 3C28  
+                                                           __ptext2 3C08  
+                                                           __ptext3 3CAC  
+                                                           __ptext4 3E4E  
+                                                           __ptext5 3D32  
+                                                           __ptext6 3DB6  
+                                                           __ptext7 3C48  
+                                                           __ptext8 3CEC  
+                                                           _lcddata 3C28  
+                                                  ___awmod@dividend 000B  
+                                              end_of_initialization 3CA6  
+                                                           postdec1 000FE5  
+                                                           postinc0 000FEE  
+                                                         _PORTBbits 000F81  
+                                                         _TRISAbits 000F92  
+                                                 __size_of_ADC_CONV 0032  
+                                                  ??_Seperate_Digit 0013  
+                                                     __pidataCOMRAM 3C04  
+                                                    __end_of_lcdcmd 3C28  
+                                               start_initialization 3C7A  
+                                                          ??_lcdcmd 0011  
+                                                       __pbssCOMRAM 0001  
+                                                          ?_MSDelay 000B  
+                                                          ?___awdiv 000B  
+                                                          ?___awmod 000B  
+                                                          MSDelay@i 000D  
+                                                          MSDelay@j 000F  
+                                                          ?_lcddata 000B  
+                                                          _ADC_CONV 3C48  
+                                                          _ADCLower 0017  
+                                                    __size_of_Delay 0044  
+                                                        _ADCON0bits 000FC2  
+                                                         copy_data0 3C8E  
+                                                  __size_of_MSDelay 0040  
+                                                          __Hrparam 0000  
+                                                          __Lrparam 0000  
+                                                  __size_of___awdiv 0098  
+                                                  __size_of___awmod 0084  
+                                                  __size_of_lcddata 0020  
+                                                          _finalNum 0009  
+                                                     __size_of_main 00EA  
+                                                          isa$xinst 000000  
+                                                      MSDelay@itime 000B  
+                                           __size_of_Seperate_Digit 00C8  

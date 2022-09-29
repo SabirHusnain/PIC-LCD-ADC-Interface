@@ -1,0 +1,233 @@
+[p GLOBOPT AUTOSTATIC LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F452 ]
+[d frameptr 4065 ]
+"7 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 3 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 3 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 3 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 3 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul64.c
+[v ___omul __omul `(ul  1 e 4 0 ]
+"83 F:\My course\Semester 4\Labs\Embedded Systems Lab\PIC\Lab 9\Lab 9 (LCD).X\main.c
+[v _main main `(i  1 e 2 0 ]
+"124
+[v _ADC_CONV ADC_CONV `(v  1 e 1 0 ]
+"133
+[v _Seperate_Digit Seperate_Digit `(v  1 e 1 0 ]
+"144
+[v _lcdcmd lcdcmd `(v  1 e 1 0 ]
+"153
+[v _lcddata lcddata `(v  1 e 1 0 ]
+"162
+[v _MSDelay MSDelay `(v  1 e 1 0 ]
+"168
+[v _Delay Delay `(v  1 e 1 0 ]
+[s S64 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"233 C:\Program Files\Microchip\xc8\v2.32\pic\include\proc\pic18f452.h
+[s S73 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 CCP2 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S82 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2A 1 0 :1:3 
+]
+[s S85 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S88 . 1 `S64 1 . 1 0 `S73 1 . 1 0 `S82 1 . 1 0 `S85 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES88  1 e 1 @3969 ]
+"490
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+[s S26 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+]
+"1241
+[s S34 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+]
+[u S42 . 1 `S26 1 . 1 0 `S34 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES42  1 e 1 @3986 ]
+"1409
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"1889
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"3592
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"3660
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+[s S146 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 GO_NOT_DONE 1 0 :1:2 
+]
+"3711
+[s S149 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 GO_nDONE 1 0 :1:2 
+`uc 1 CHS 1 0 :3:3 
+`uc 1 ADCS 1 0 :2:6 
+]
+[s S155 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 GO 1 0 :1:2 
+`uc 1 CHS0 1 0 :1:3 
+`uc 1 CHS1 1 0 :1:4 
+`uc 1 CHS2 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S163 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_DONE 1 0 :1:2 
+]
+[s S166 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nDONE 1 0 :1:2 
+]
+[s S169 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 DONE 1 0 :1:2 
+]
+[s S172 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 GO_DONE 1 0 :1:2 
+]
+[s S175 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 ADCAL 1 0 :1:7 
+]
+[s S178 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 GODONE 1 0 :1:2 
+]
+[u S181 . 1 `S146 1 . 1 0 `S149 1 . 1 0 `S155 1 . 1 0 `S163 1 . 1 0 `S166 1 . 1 0 `S169 1 . 1 0 `S172 1 . 1 0 `S175 1 . 1 0 `S178 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES181  1 e 1 @4034 ]
+"3808
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"3815
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"66 F:\My course\Semester 4\Labs\Embedded Systems Lab\PIC\Lab 9\Lab 9 (LCD).X\main.c
+[v _ADCLower ADCLower `i  1 e 2 0 ]
+"67
+[v _ADCHigher ADCHigher `i  1 e 2 0 ]
+"69
+[v _finalNum finalNum `i  1 e 2 0 ]
+"71
+[v _num1 num1 `i  1 e 2 0 ]
+"72
+[v _num2 num2 `i  1 e 2 0 ]
+"73
+[v _num3 num3 `i  1 e 2 0 ]
+"74
+[v _num4 num4 `i  1 e 2 0 ]
+"83
+[v _main main `(i  1 e 2 0 ]
+{
+"122
+} 0
+"153
+[v _lcddata lcddata `(v  1 e 1 0 ]
+{
+[v lcddata@value value `uc  1 a 1 wreg ]
+[v lcddata@value value `uc  1 a 1 wreg ]
+[v lcddata@value value `uc  1 a 1 6 ]
+"160
+} 0
+"144
+[v _lcdcmd lcdcmd `(v  1 e 1 0 ]
+{
+[v lcdcmd@value value `uc  1 a 1 wreg ]
+[v lcdcmd@value value `uc  1 a 1 wreg ]
+[v lcdcmd@value value `uc  1 a 1 6 ]
+"151
+} 0
+"162
+[v _MSDelay MSDelay `(v  1 e 1 0 ]
+{
+"163
+[v MSDelay@j j `ui  1 a 2 4 ]
+[v MSDelay@i i `ui  1 a 2 2 ]
+"162
+[v MSDelay@itime itime `ui  1 p 2 0 ]
+"166
+} 0
+"133
+[v _Seperate_Digit Seperate_Digit `(v  1 e 1 0 ]
+{
+"142
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 0 ]
+[v ___awmod@divisor divisor `i  1 p 2 2 ]
+"34
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+"41
+} 0
+"124 F:\My course\Semester 4\Labs\Embedded Systems Lab\PIC\Lab 9\Lab 9 (LCD).X\main.c
+[v _ADC_CONV ADC_CONV `(v  1 e 1 0 ]
+{
+"131
+} 0
+"168
+[v _Delay Delay `(v  1 e 1 0 ]
+{
+"170
+[v Delay@k k `i  1 a 2 4 ]
+"169
+[v Delay@j j `i  1 a 2 2 ]
+"168
+[v Delay@i i `ui  1 p 2 0 ]
+"171
+} 0
